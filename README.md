@@ -1,1 +1,1 @@
-https://kavyakukku.github.io/Image_gallery/
+https://KavyaKukku.github.io/Image_gallery/
