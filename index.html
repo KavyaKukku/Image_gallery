@@ -54,7 +54,7 @@ button {
     <h1>Image gallery example</h1>
 
     <div class="image-container">
-      <img class="main-img" src="images/img1.jpg" alt="Closeup of a human eye">
+      <img class="main-img" src="images/pic1.jpg" alt="Random pics" width="500" height="300">
       <div class="image-overlay"></div>
       <button class="dark-mode">Darken</button>
     </div>
@@ -65,14 +65,7 @@ button {
     <script>
   // List of image filenames and alternative text descriptions
 const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
-const altTexts = {
-  'img1.jpg': 'Closeup of a blue human eye',
-  'img2.jpg': 'Closeup of a rock on a seashore',
-  'img3.jpg': 'Closeup of a pink flower with dew drops',
-  'img4.jpg': 'Landscape with mountains and clouds',
-  'img5.jpg': 'Closeup of a butterfly on a leaf'
-};
-
+const imgAltText = ['photo1','photo2','photo3','photo4','photo5'];
 // Select the required elements from the DOM
 const thumbBar = document.querySelector('.thumb-bar');
 const displayedImg = document.querySelector('.displayed-img');
