@@ -63,43 +63,49 @@ button {
       
     </div>
     <script>
-  // List of image filenames and alternative text descriptions
-const images = ['img1.jpg', 'img2.jpg', 'img3.jpg', 'img4.jpg', 'img5.jpg'];
+  const mainImage = document.querySelector('.main-img');
+const thumbnailContainer = document.querySelector('.thumbnail-bar');
+const galleryImages = document.querySelectorAll('.thumbnail-bar img')
+
+const toggleBtn = document.querySelector('button');
+const shadingOverlay = document.querySelector('.image-overlay');
+
+/* Declaring the array of image filenames */
+const imgFiles = ['images/pic1.jpg','images/pic2.jpg','images/pic3.jpg','images/pic4.jpg','images/pic5.jpg'];
+
+/* Declaring the alternative text for each image file */
 const imgAltText = ['photo1','photo2','photo3','photo4','photo5'];
-// Select the required elements from the DOM
-const thumbBar = document.querySelector('.thumb-bar');
-const displayedImg = document.querySelector('.displayed-img');
-const overlay = document.querySelector('.overlay');
-const btn = document.querySelector('.dark');
+const imgCount = imgFiles.length;
 
-// Loop through the images and create the thumbnail images
-for (const img of images) {
-  const newImage = document.createElement('img');
-  newImage.setAttribute('src', `images/${img}`);
-  newImage.setAttribute('alt', altTexts[img]);
-  thumbBar.appendChild(newImage);
-
-  // Add a click event listener to update the main image and alt text
-  newImage.addEventListener('click', () => {
-    displayedImg.setAttribute('src', `Images/${img}`);
-    displayedImg.setAttribute('alt', altTexts[img]);
-  });
+/* Looping through images */
+for (let i = 0; i < imgCount; i++) {
+    const thumbImage = document.createElement('img');
+    thumbImage.setAttribute('src', imgFiles[i]);
+    thumbImage.setAttribute('alt', imgAltText[i]);
+    thumbnailContainer.appendChild(thumbImage);
+    thumbImage.addEventListener('click', function(e){
+        mainImage.setAttribute('src', e.target.src);
+    })
 }
 
-// Variable to track if the image is darkened
-let isDark = false;
+galleryImages.forEach(img => {
+    img.addEventListener('click', function(){
+        mainImage.setAttribute('src', img.src);
+    })
+})
 
-// Add a click event listener to the button to toggle darkening
-btn.addEventListener('click', () => {
-  if (!isDark) {
-    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
-    btn.textContent = 'Lighten';
-    isDark = true;
-  } else {
-    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0)';
-    btn.textContent = 'Darken';
-    isDark = false;
-  }
+/* Wiring up the Darken/Lighten button */
+toggleBtn.addEventListener('click', () => {
+    const btnState = toggleBtn.getAttribute('class');
+    if (btnState === 'dark-mode') {
+      toggleBtn.setAttribute('class','light-mode');
+      toggleBtn.textContent = 'Lighten';
+      shadingOverlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
+    } else {
+      toggleBtn.setAttribute('class','dark-mode');
+      toggleBtn.textContent = 'Darken';
+      shadingOverlay.style.backgroundColor = 'rgba(0,0,0,0)';
+    }
 });
   </script>
   </body>
